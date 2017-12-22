@@ -57,7 +57,7 @@ public class PacketHandler {
                 break;
 
             case "PacketLeave":
-
+                casimir.userLeave(p.getIpAddress());
                 break;
 
             default:
