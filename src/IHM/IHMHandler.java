@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import static com.sun.glass.ui.Cursor.setVisible;
+
 public class IHMHandler {
     private Controller controller;
     private JFrame mainFrame;
@@ -38,10 +40,17 @@ public class IHMHandler {
                 controller.logout();
             }
         });
+      /*  mainFrame.addWindowListener(new WindowAdapter()
+        {public void windowIconified(WindowEvent e)
+        {
+            setVisible(false);
+        }});
+
         mainFrame.pack();
         mainFrame.setVisible(true);
-
+*/
     }
+
     public void messageAdd(Message message){
 
     }
