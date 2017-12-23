@@ -6,8 +6,8 @@ public class PacketMessage extends Packet {
 
     private Message message;
 
-    public PacketMessage(String ipAdress, Message message){
-        super(ipAdress);
+    public PacketMessage(String ipAddress, Message message){
+        super(ipAddress,3);
         this.message=message;
     }
 

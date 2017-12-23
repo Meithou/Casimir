@@ -11,15 +11,14 @@ import java.net.SocketException;
 public class UDPMessageReceiverService extends Thread implements IncomingMessageListener {
 
     private int size;
-    private boolean running;
-
+    private PacketHandler packetHandler;
     private DatagramSocket receiverSocket;
     private DatagramPacket receivedPacket;
 
-    public UDPMessageReceiverService(int udp_port, int size) throws SocketException {
+    public UDPMessageReceiverService(int udp_port, int size,PacketHandler packetHandler) throws SocketException {
 
         this.size=size; // 500 de base
-
+        this.packetHandler=packetHandler;
         receiverSocket = new DatagramSocket(udp_port);
         receivedPacket = new DatagramPacket(new byte[size], size);
 
@@ -58,7 +57,11 @@ public class UDPMessageReceiverService extends Thread implements IncomingMessage
 
     @Override
     public void onNewIncomingMessage(Packet p) {
-
+        try {
+            packetHandler.packetProcess(p);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

@@ -17,6 +17,7 @@ public class UserHandler {
         }
         return result;
     }
+
     public ArrayList<String> getNameList(){
         ArrayList<String> result = new ArrayList<>();
         for (User user : ActiveUser.values()){
@@ -24,6 +25,7 @@ public class UserHandler {
         }
         return result;
     }
+
     public int addUser(User u){
         if(ActiveUser.containsKey(u.getIpAddress()))
             return 42; // error code
@@ -47,5 +49,17 @@ public class UserHandler {
             return 42; // user error
         ActiveUser.get(ipAddress).setNickname(name);
         return 0;
+    }
+    public String getIp(String username){
+        for(User user : ActiveUser.values())
+            if(user.getNickname()==username)
+                return user.getIpAddress();
+        return null;
+    }
+    public User getUserFromName(String nickname){
+        for(User u : ActiveUser.values())
+            if(u.getNickname()==nickname)
+                return u;
+        return null;
     }
 }
