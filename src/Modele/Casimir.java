@@ -44,11 +44,16 @@ public class Casimir {
             controller.loginError();
         }
         //Del late
-        controller.loginSuccess(nickname);
+        loginSuccess();
+    }
+    public void loginSuccess(){
+        controller.loginSuccess(pendingName);
+        user.setNickname(pendingName);
+        user.setSelectedPort(packetHandler.getSelectedPort());
     }
     public void loginAnswer(int status, ArrayList<User> userList){
         if(status ==1)
-            controller.loginSuccess(pendingName);
+            loginSuccess();
         else
             controller.loginError();
     }
@@ -73,9 +78,12 @@ public class Casimir {
     }
 
     public void messageSend(String nickname,String message){
-        Message builtmessage = new Message(message,userHandler.getUserFromName(nickname));
+        Message builtmessage = new Message(message,user);
+        User userDest  = userHandler.getUserFromName(nickname);
         try {
-            packetHandler.messageSend(user,builtmessage);
+            packetHandler.messageSend(userDest,builtmessage);
+            messageHandler.addMessage(userDest.getIpAddress(),builtmessage);
+            controller.messageReceive(builtmessage);
         } catch (Exception e) {
             e.printStackTrace();
         }

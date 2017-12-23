@@ -39,12 +39,21 @@ public class MainInterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.messageSend(activeScreen, textArea1.getText());
+                textArea1.setText("");
             }
         });
     }
 
     public JPanel getPanel1() {
         return panel1;
+    }
+
+    public String getActiveScreen() {
+        return activeScreen;
+    }
+
+    public String getUser() {
+        return username;
     }
 
     public void addMessage(String nickname, String message) {

@@ -28,9 +28,9 @@ public class PacketHandler {
                 selectedPort++;
             }
         }
-
       }
 
+    public int getSelectedPort(){return selectedPort;}
     public void login(String nickname) throws Exception {
         PacketHandshake ph = new PacketHandshake(casimir.getIp(),nickname,selectedPort);
         UDPMessageSenderService.sendAll(ph);

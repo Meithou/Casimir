@@ -52,7 +52,10 @@ public class IHMHandler {
     }
 
     public void messageAdd(Message message){
-
+        String curr = mainInterface.getActiveScreen();
+        if(message.getSender().getNickname() != mainInterface.getUser())
+            curr = message.getSender().getNickname();
+        mainInterface.addMessage(curr,curr+" - "+message.getStamp() +" : "+ message.getMessage());
     }
     public void userAdd(String nickname){
         mainInterface.addUser(nickname);
